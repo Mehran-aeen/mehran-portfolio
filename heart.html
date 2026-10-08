@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>I Love You ❤️</title>
 
 <style>
+
 * {
     margin: 0;
     padding: 0;
@@ -15,71 +16,119 @@
 
 body {
     min-height: 100vh;
+    overflow: hidden;
+
+    background: #080008;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
-    background: radial-gradient(circle, #300015, #080008 75%);
+
     font-family: Arial, sans-serif;
 }
 
 #heart {
-    width: 100%;
-    max-width: 700px;
-    text-align: center;
-    line-height: 1.05;
-    font-size: clamp(9px, 1.6vw, 14px);
-    font-weight: bold;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* هر I LOVE YOU */
+
+.love {
+    position: absolute;
+
     color: #ff1744;
-    text-shadow: 0 0 8px #ff1744, 0 0 20px #ff1744;
-    white-space: pre;
-    animation: pulse 1.5s infinite ease-in-out;
+
+    font-size: clamp(9px, 1.7vw, 18px);
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    opacity: 0;
+
+    transform: translate(-50%, -50%) scale(0);
+
+    text-shadow:
+        0 0 5px #ff1744,
+        0 0 12px #ff1744;
+
+    animation: appear .5s forwards;
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(0.97);
-        filter: brightness(0.9);
+@keyframes appear {
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
     }
-    50% {
-        transform: scale(1.03);
-        filter: brightness(1.4);
-    }
+
 }
 
-@media (max-width: 600px) {
-    #heart {
-        font-size: 7px;
-    }
-}
 </style>
 </head>
 
 <body>
 
-<pre id="heart"></pre>
+<div id="heart"></div>
 
 <script>
+
 const heart = document.getElementById("heart");
 
-const size = 100;
-let result = "";
+const total = 260;
 
-for (let y = 1.5; y > -1.5; y -= 0.12) {
-    for (let x = -1.5; x < 1.5; x += 0.045) {
-        const a = x * x + y * y - 1;
-        const inside = a * a * a - x * x * y * y * y <= 0;
+/* ساخت نقاط قلب */
 
-        if (inside) {
-            result += "I LOVE YOU ";
-        } else {
-            result += " ";
-        }
-    }
-    result += "\n";
+for (let i = 0; i < total; i++) {
+
+    const t = (Math.PI * 2 * i) / total;
+
+    /*
+       فرمول قلب
+    */
+
+    const x =
+        16 * Math.pow(Math.sin(t), 3);
+
+    const y =
+        13 * Math.cos(t)
+        - 5 * Math.cos(2 * t)
+        - 2 * Math.cos(3 * t)
+        - Math.cos(4 * t);
+
+    const love = document.createElement("div");
+
+    love.className = "love";
+
+    love.innerText = "I LOVE YOU";
+
+    /*
+       تبدیل مختصات قلب
+    */
+
+    const centerX = 50;
+    const centerY = 48;
+
+    const scale = 2.8;
+
+    love.style.left =
+        (centerX + x * scale) + "%";
+
+    love.style.top =
+        (centerY - y * scale) + "%";
+
+    /*
+       ظاهر شدن دونه دونه
+    */
+
+    love.style.animationDelay =
+        (i * 0.025) + "s";
+
+    heart.appendChild(love);
 }
 
-heart.textContent = result;
 </script>
 
 </body>
