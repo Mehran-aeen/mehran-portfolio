@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>قلب من ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: Tahoma, Arial, sans-serif;
+      color: white;
+      background: radial-gradient(
+        circle at top,
+        #402044,
+        #151525 65%,
+        #090912
+      );
+      padding: 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      padding: 30px 20px;
+      border: 1px solid #ffffff25;
+      border-radius: 25px;
+      background: #ffffff0c;
+      box-shadow: 0 0 40px #ff247522;
+    }
+
+    .heart {
+      font-size: clamp(100px, 30vw, 160px);
+      line-height: 1.5;
+      color: #ff356f;
+      display: inline-block;
+      animation: beat 1s infinite;
+      filter: drop-shadow(0 0 20px #ff356f88);
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      15% { transform: scale(1.15); }
+      30% { transform: scale(1); }
+      45% { transform: scale(1.1); }
+      60% { transform: scale(1); }
+    }
+
+    h1 {
+      font-size: clamp(23px, 6vw, 30px);
+      margin: 10px 0;
+    }
+
+    p {
+      color: #d7cadd;
+      line-height: 2;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 14px;
+      color: white;
+      background: linear-gradient(135deg, #ff356f, #a52bff);
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      transition: transform 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    #message {
+      min-height: 50px;
+      margin-top: 18px;
+      color: #ffb4d0;
+    }
+
+    a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #d9b7ff;
+      text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .heart {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card">
+    <div class="heart" aria-label="قلب">❤️</div>
+
+    <h1>یه قلب پر از انرژی!</h1>
+
+    <p>
+      هر روز یه فرصت تازه‌ست؛
+      به خودت ایمان داشته باش و ادامه بده.
+    </p>
+
+    <button onclick="showMessage()">
+      یه پیام قشنگ برام بگو ✨
+    </button>
+
+    <p id="message" aria-live="polite">
+      منتظر یه پیام قشنگی؟ 😊
+    </p>
+
+    <a href="index.html">🏠 بازگشت به صفحه اصلی</a>
+  </main>
+
+  <script>
+    const messages = [
+      "تو می‌تونی از پسش بربیای! 💪",
+      "قدم‌های کوچیک هم تو رو جلو می‌برن 🚀",
+      "به خودت افتخار کن! ✨",
+      "امروزت رو با انرژی بساز 🌟",
+      "بهترین نسخه خودت باش ❤️"
+    ];
+
+    let lastIndex = -1;
+
+    function showMessage() {
+      let index;
+
+      do {
+        index = Math.floor(Math.random() * messages.length);
+      } while (index === lastIndex);
+
+      lastIndex = index;
+      document.getElementById("message").textContent =
+        messages[index];
+    }
+  </script>
+</body>
+</html>
