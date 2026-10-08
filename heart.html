@@ -1,155 +1,86 @@
 
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>قلب من ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>I Love You ❤️</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-    }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      font-family: Tahoma, Arial, sans-serif;
-      color: white;
-      background: radial-gradient(
-        circle at top,
-        #402044,
-        #151525 65%,
-        #090912
-      );
-      padding: 20px;
-    }
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: radial-gradient(circle, #300015, #080008 75%);
+    font-family: Arial, sans-serif;
+}
 
-    .card {
-      width: 100%;
-      max-width: 420px;
-      padding: 30px 20px;
-      border: 1px solid #ffffff25;
-      border-radius: 25px;
-      background: #ffffff0c;
-      box-shadow: 0 0 40px #ff247522;
-    }
+#heart {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    line-height: 1.05;
+    font-size: clamp(9px, 1.6vw, 14px);
+    font-weight: bold;
+    color: #ff1744;
+    text-shadow: 0 0 8px #ff1744, 0 0 20px #ff1744;
+    white-space: pre;
+    animation: pulse 1.5s infinite ease-in-out;
+}
 
-    .heart {
-      font-size: clamp(100px, 30vw, 160px);
-      line-height: 1.5;
-      color: #ff356f;
-      display: inline-block;
-      animation: beat 1s infinite;
-      filter: drop-shadow(0 0 20px #ff356f88);
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.97);
+        filter: brightness(0.9);
     }
+    50% {
+        transform: scale(1.03);
+        filter: brightness(1.4);
+    }
+}
 
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      15% { transform: scale(1.15); }
-      30% { transform: scale(1); }
-      45% { transform: scale(1.1); }
-      60% { transform: scale(1); }
+@media (max-width: 600px) {
+    #heart {
+        font-size: 7px;
     }
-
-    h1 {
-      font-size: clamp(23px, 6vw, 30px);
-      margin: 10px 0;
-    }
-
-    p {
-      color: #d7cadd;
-      line-height: 2;
-      font-size: 15px;
-    }
-
-    button {
-      margin-top: 15px;
-      padding: 14px 22px;
-      border: none;
-      border-radius: 14px;
-      color: white;
-      background: linear-gradient(135deg, #ff356f, #a52bff);
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-      transition: transform 0.2s;
-    }
-
-    button:active {
-      transform: scale(0.97);
-    }
-
-    #message {
-      min-height: 50px;
-      margin-top: 18px;
-      color: #ffb4d0;
-    }
-
-    a {
-      display: inline-block;
-      margin-top: 15px;
-      color: #d9b7ff;
-      text-decoration: none;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .heart {
-        animation: none;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
-  <main class="card">
-    <div class="heart" aria-label="قلب">❤️</div>
 
-    <h1>یه قلب پر از انرژی!</h1>
+<pre id="heart"></pre>
 
-    <p>
-      هر روز یه فرصت تازه‌ست؛
-      به خودت ایمان داشته باش و ادامه بده.
-    </p>
+<script>
+const heart = document.getElementById("heart");
 
-    <button onclick="showMessage()">
-      یه پیام قشنگ برام بگو ✨
-    </button>
+const size = 100;
+let result = "";
 
-    <p id="message" aria-live="polite">
-      منتظر یه پیام قشنگی؟ 😊
-    </p>
+for (let y = 1.5; y > -1.5; y -= 0.12) {
+    for (let x = -1.5; x < 1.5; x += 0.045) {
+        const a = x * x + y * y - 1;
+        const inside = a * a * a - x * x * y * y * y <= 0;
 
-    <a href="index.html">🏠 بازگشت به صفحه اصلی</a>
-  </main>
-
-  <script>
-    const messages = [
-      "تو می‌تونی از پسش بربیای! 💪",
-      "قدم‌های کوچیک هم تو رو جلو می‌برن 🚀",
-      "به خودت افتخار کن! ✨",
-      "امروزت رو با انرژی بساز 🌟",
-      "بهترین نسخه خودت باش ❤️"
-    ];
-
-    let lastIndex = -1;
-
-    function showMessage() {
-      let index;
-
-      do {
-        index = Math.floor(Math.random() * messages.length);
-      } while (index === lastIndex);
-
-      lastIndex = index;
-      document.getElementById("message").textContent =
-        messages[index];
+        if (inside) {
+            result += "I LOVE YOU ";
+        } else {
+            result += " ";
+        }
     }
-  </script>
+    result += "\n";
+}
+
+heart.textContent = result;
+</script>
+
 </body>
 </html>
