@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mehran | Portfolio</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;900&display=swap');
+
+:root {
+  --bg: #080b14;
+  --card: #111827;
+  --cyan: #00f5ff;
+  --purple: #a855f7;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.9;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 15% 20%, #00f5ff15, transparent 30%),
+    radial-gradient(circle at 85% 70%, #a855f715, transparent 35%);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+  border-bottom: 1px solid #ffffff12;
+  background: #080b14cc;
+  backdrop-filter: blur(15px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  color: var(--cyan);
+  font-weight: 900;
+  font-size: 22px;
+}
+
+nav a {
+  color: var(--text);
+  text-decoration: none;
+  margin-right: 20px;
+  font-size: 14px;
+  transition: .3s;
+}
+
+nav a:hover {
+  color: var(--cyan);
+}
+
+.hero {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 70px 20px;
+}
+
+.avatar {
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  padding: 5px;
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 25px #00f5ff50;
+  margin-bottom: 25px;
+  animation: float 4s ease-in-out infinite;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.tag {
+  display: inline-block;
+  color: var(--cyan);
+  border: 1px solid #00f5ff55;
+  padding: 5px 15px;
+  border-radius: 30px;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+h1 {
+  font-size: clamp(35px, 7vw, 65px);
+  font-weight: 900;
+  line-height: 1.4;
+}
+
+.gradient {
+  background: linear-gradient(90deg, var(--cyan), var(--purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 600px;
+  margin: 15px 0 25px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn {
+  padding: 11px 23px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: .3s;
+}
+
+.primary {
+  background: var(--cyan);
+  color: #061018;
+}
+
+.secondary {
+  border: 1px solid #ffffff30;
+  color: var(--text);
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px #00f5ff25;
+}
+
+section {
+  padding: 75px 8%;
+}
+
+.section-title {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.section-title span {
+  color: var(--cyan);
+}
+
+.about {
+  background: #ffffff04;
+  border-top: 1px solid #ffffff0c;
+  border-bottom: 1px solid #ffffff0c;
+}
+
+.about p {
+  max-width: 800px;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: linear-gradient(145deg, #141c2d, #0d1220);
+  border: 1px solid #ffffff12;
+  border-radius: 18px;
+  padding: 25px;
+  transition: .3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #00f5ff70;
+  box-shadow: 0 10px 30px #00f5ff0c;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 19px;
+}
+
+.card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.skill {
+  display: inline-block;
+  background: #00f5ff10;
+  border: 1px solid #00f5ff25;
+  color: var(--cyan);
+  padding: 6px 13px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 13px;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.contact {
+  text-align: center;
+}
+
+.contact p {
+  color: var(--muted);
+  margin-bottom: 25px;
+}
+
+footer {
+  text-align: center;
+  padding: 25px;
+  color: var(--muted);
+  border-top: 1px solid #ffffff12;
+  font-size: 13px;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 15px 5%; }
+  nav a { margin-right: 8px; font-size: 12px; }
+  .logo { font-size: 18px; }
+  section { padding: 55px 6%; }
+  .avatar { width: 130px; height: 130px; }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="logo">MEHRAN.DEV</div>
+  <div>
+    <a href="#about">درباره من</a>
+    <a href="#skills">مهارت‌ها</a>
+    <a href="#projects">پروژه‌ها</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="avatar">
+    <img
+      src="https://github.com/Mehran-aeen.png?size=500"
+      alt="عکس پروفایل مهران"
+    >
+  </div>
+
+  <span class="tag">🚀 برنامه‌نویس در حال یادگیری</span>
+
+  <h1>سلام، من <span class="gradient">مهران</span> هستم</h1>
+
+  <h2 style="font-size:clamp(18px,3vw,27px);margin-top:8px">
+    علاقه‌مند به <span class="gradient">برنامه‌نویسی و تکنولوژی</span>
+  </h2>
+
+  <p>
+    اینجا فضای شخصی من در دنیای برنامه‌نویسی است؛
+    جایی برای یادگیری، ساخت پروژه‌های جدید و تبدیل ایده‌ها به واقعیت.
+  </p>
+
+  <div class="buttons">
+    <a class="btn primary" href="#projects">مشاهده پروژه‌ها ↙</a>
+    <a class="btn secondary" href="https://github.com/Mehran-aeen" target="_blank" rel="noopener noreferrer">گیت‌هاب من ↗</a>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <h2 class="section-title">درباره <span>من</span></h2>
+  <p>
+    من مهران هستم و به دنیای کامپیوتر، برنامه‌نویسی و ساخت وب‌سایت
+    علاقه دارم. در حال یادگیری مهارت‌های جدید هستم و سعی می‌کنم
+    با انجام پروژه‌های واقعی، هر روز بهتر از قبل بشوم.
+    هدفم این است که ایده‌هایم را به پروژه‌های کاربردی تبدیل کنم.
+  </p>
+</section>
+
+<section id="skills">
+  <h2 class="section-title">مهارت‌ها و <span>ابزارها</span></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>🐍 Python</h3>
+      <p>یادگیری اصول برنامه‌نویسی و ساخت برنامه‌های کاربردی.</p>
+    </div>
+
+    <div class="card">
+      <h3>🌐 Web Development</h3>
+      <p>آشنایی با ساختار و طراحی وب‌سایت‌ها.</p>
+    </div>
+
+    <div class="card">
+      <h3>🛠️ Developer Tools</h3>
+      <p>کار با VS Code، گیت و گیت‌هاب برای مدیریت پروژه‌ها.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:25px">
+    <span class="skill">Python</span>
+    <span class="skill">HTML</span>
+    <span class="skill">CSS</span>
+    <span class="skill">JavaScript</span>
+    <span class="skill">Git</span>
+    <span class="skill">GitHub</span>
+    <span class="skill">VS Code</span>
+  </div>
+</section>
+
+<section id="projects" class="about">
+  <h2 class="section-title">پروژه‌های <span>من</span></h2>
+
+  <div class="grid">
+    <div class="card">
+      <h3>💜 Heart Project</h3>
+      <p>یک پروژه سرگرم‌کننده و تعاملی برای تمرین طراحی وب.</p>
+      <a class="project-link" href="https://github.com/Mehran-aeen/my-python" target="_blank" rel="noopener noreferrer">مشاهده مخزن ↗</a>
+    </div>
+
+    <div class="card">
+      <h3>💻 My Python</h3>
+      <p>فضای تمرین و نگهداری پروژه‌های پایتون من در گیت‌هاب.</p>
+      <a class="project-link" href="https://github.com/Mehran-aeen/my-python" target="_blank" rel="noopener noreferrer">مشاهده در GitHub ↗</a>
+    </div>
+
+    <div class="card">
+      <h3>✨ پروژه‌های بعدی</h3>
+      <p>این بخش با ساخت پروژه‌های جدید و پیشرفت من کامل‌تر می‌شود.</p>
+      <a class="project-link" href="https://github.com/Mehran-aeen" target="_blank" rel="noopener noreferrer">پروفایل من ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <h2 class="section-title">ارتباط با <span>من</span></h2>
+  <p>برای دیدن پروژه‌ها و مسیر یادگیری من، به گیت‌هابم سر بزن.</p>
+
+  <a class="btn primary" href="https://github.com/Mehran-aeen" target="_blank" rel="noopener noreferrer">
+    ورود به GitHub ↗
+  </a>
+</section>
+
+<footer>
+  ساخته‌شده با 💙 توسط Mehran
+  <br>
+  © 2026 — تمام حقوق محفوظ است.
+</footer>
+
+</body>
+</html>
