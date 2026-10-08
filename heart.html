@@ -3,189 +3,329 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>I Love You ❤️ | Mehran</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#090611">
+<title>A Heart Made of Love | Mehran</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+  --pink: #ff3e78;
+  --bg: #090611;
+  --text: #fff4f8;
 }
 
+* { box-sizing: border-box; }
+
 body {
-    min-height: 100vh;
-    overflow: hidden;
-    background: #080008;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 42%, #35132f 0%, #150b1c 43%, var(--bg) 100%);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(2px 2px at 15% 20%, #ffffff99 99%, transparent),
+    radial-gradient(2px 2px at 80% 30%, #ff8bb999 99%, transparent),
+    radial-gradient(1px 1px at 65% 75%, #ffffff99 99%, transparent),
+    radial-gradient(2px 2px at 25% 85%, #c084fc99 99%, transparent);
+  background-size: 230px 220px;
+}
+
+.page {
+  width: min(100%, 900px);
+  min-height: 100vh;
+  margin: auto;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Profile at the top */
+.profile {
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 17px 9px 9px;
+  border: 1px solid #ff7aa966;
+  border-radius: 60px;
+  background: #ffffff0c;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 8px 35px #0005, 0 0 24px #ff174f18;
+  color: white;
+  text-decoration: none;
+  transition: .25s ease;
+}
+
+.profile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px #ff174f40;
+}
+
+.avatar-ring {
+  width: 52px;
+  height: 52px;
+  padding: 2px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff174f, #ffb5d0, #b66aff);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border: 2px solid #180c1b;
+  border-radius: 50%;
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.handle {
+  font-size: 12px;
+  color: #ff9cbd;
+}
+
+.arrow {
+  color: #ffb3ce;
+  font-size: 18px;
+}
+
+.intro {
+  text-align: center;
+  margin-top: 23px;
+  animation: fadeUp .8s both;
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ff91b5;
+}
+
+h1 {
+  margin: 9px 0;
+  font-size: clamp(25px, 5vw, 40px);
+  background: linear-gradient(90deg, #fff, #ff8cb5, #d8a6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  margin: 0;
+  color: #c8b5cd;
+  font-size: 13px;
+}
+
+.heart-stage {
+  position: relative;
+  width: min(100%, 680px);
+  height: clamp(350px, 58vh, 530px);
+  margin-top: 5px;
+  display: grid;
+  place-items: center;
+}
+
+.heart-stage::before {
+  content: "";
+  position: absolute;
+  width: 60%;
+  height: 45%;
+  border-radius: 50%;
+  background: #ff1d6425;
+  filter: blur(45px);
+  animation: pulse 3s ease-in-out infinite;
 }
 
 #heart {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .love {
-    position: absolute;
-    color: #ff1744;
-    font-size: clamp(8px, 1.3vw, 14px);
-    font-weight: bold;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0);
-    text-shadow: 0 0 5px #ff1744, 0 0 12px #ff1744;
-    animation: appear .5s forwards;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  transform: translate(-50%, -50%) scale(.2);
+  opacity: 0;
+  white-space: nowrap;
+  font-size: clamp(6px, 1.15vw, 10px);
+  font-weight: 800;
+  letter-spacing: .02em;
+  color: hsl(var(--hue), 100%, var(--light));
+  text-shadow: 0 0 7px #ff397b80, 0 0 15px #ff174f35;
+  animation: appear .55s cubic-bezier(.2,.8,.2,1) forwards;
+  animation-delay: var(--delay);
 }
+
+.footer {
+  margin-top: auto;
+  padding: 18px 0 4px;
+  color: #96839b;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.footer span { color: var(--pink); }
 
 @keyframes appear {
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
-/* Creator Profile */
-.creator {
-    position: fixed;
-    z-index: 10;
-    left: 50%;
-    bottom: 18px;
-    transform: translateX(-50%);
-
-    display: flex;
-    align-items: center;
-    gap: 11px;
-
-    padding: 10px 16px 10px 10px;
-    border: 1px solid rgba(255, 23, 68, .65);
-    border-radius: 50px;
-
-    background: rgba(20, 5, 15, .92);
-    box-shadow: 0 0 18px rgba(255, 23, 68, .25);
-
-    color: white;
-    text-decoration: none;
-    white-space: nowrap;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    transition: box-shadow .25s ease;
+@keyframes pulse {
+  0%, 100% { opacity: .5; transform: scale(.9); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
 
-.creator:hover {
-    box-shadow: 0 0 28px rgba(255, 23, 68, .55);
-}
-
-.creator img {
-    width: 43px;
-    height: 43px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ff1744;
-}
-
-.creator-info {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.creator-name {
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.creator-handle {
-    font-size: 11px;
-    color: #ff8ca2;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 480px) {
-    .creator {
-        bottom: 12px;
-        padding: 8px 13px 8px 8px;
-        gap: 9px;
-    }
+  .page { padding: 16px 8px; }
+  .avatar-ring { width: 45px; height: 45px; }
+  .profile { gap: 9px; padding: 8px 12px 8px 8px; }
+  .name { font-size: 13px; }
+  .handle { font-size: 11px; }
+  .intro { margin-top: 22px; }
+  .heart-stage {
+    height: clamp(330px, 53vh, 430px);
+    margin-top: 12px;
+  }
+  .love { font-size: 6px; }
+}
 
-    .creator img {
-        width: 36px;
-        height: 36px;
-    }
-
-    .creator-name {
-        font-size: 12px;
-    }
-
-    .creator-handle {
-        font-size: 10px;
-    }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-delay: 0ms !important;
+  }
 }
 </style>
 </head>
 
 <body>
+<main class="page">
 
-<div id="heart"></div>
+  <a class="profile"
+     href="https://github.com/Mehran-aeen"
+     target="_blank"
+     rel="noopener noreferrer"
+     aria-label="Visit Mehran's GitHub profile">
 
-<!-- Click to visit Mehran's GitHub profile -->
-<a
-    class="creator"
-    href="https://github.com/Mehran-aeen"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Made by Mehran - Visit GitHub profile"
->
-    <img
-        src="https://avatars.githubusercontent.com/u/289211534?v=4"
-        alt="Mehran's GitHub avatar"
-    >
-
-    <span class="creator-info">
-        <span class="creator-name">Made with ❤️ by Mehran</span>
-        <span class="creator-handle">@Mehran-aeen · GitHub ↗</span>
+    <span class="avatar-ring">
+      <img class="avatar"
+           src="https://avatars.githubusercontent.com/u/289211534?v=4"
+           alt="Mehran's profile picture">
     </span>
-</a>
+
+    <span class="identity">
+      <span class="name">Mehran</span>
+      <span class="handle">@Mehran-aeen · GitHub</span>
+    </span>
+
+    <span class="arrow">↗</span>
+  </a>
+
+  <header class="intro">
+    <div class="eyebrow">A little thing made with love</div>
+    <h1>A Heart Made of Love</h1>
+    <p class="subtitle">
+      Every little word, placed one by one. ❤️
+    </p>
+  </header>
+
+  <section class="heart-stage"
+           aria-label="Heart made from I LOVE YOU words">
+    <div id="heart"></div>
+  </section>
+
+  <footer class="footer">
+    DESIGNED WITH <span>♥</span> BY MEHRAN
+  </footer>
+
+</main>
 
 <script>
 const heart = document.getElementById("heart");
-const total = 220;
+const mobile = window.matchMedia("(max-width: 480px)").matches;
 
-for (let i = 0; i < total; i++) {
-    const t = (Math.PI * 2 * i) / total;
+// A mathematical heart equation fills the shape with individual phrases.
+const stepX = mobile ? 0.105 : 0.085;
+const stepY = mobile ? 0.105 : 0.085;
+const points = [];
 
-    const x = 16 * Math.pow(Math.sin(t), 3);
+for (let y = 1.18; y >= -1.12; y -= stepY) {
+  for (let x = -1.28; x <= 1.28; x += stepX) {
+    const equation =
+      Math.pow(x * x + y * y - 1, 3) -
+      x * x * Math.pow(y, 3);
 
-    const y =
-        13 * Math.cos(t)
-        - 5 * Math.cos(2 * t)
-        - 2 * Math.cos(3 * t)
-        - Math.cos(4 * t);
-
-    const love = document.createElement("div");
-
-    love.className = "love";
-    love.innerText = "I LOVE YOU";
-
-    const centerX = 50;
-    const centerY = 50;
-    const scaleX = 2.2;
-    const scaleY = 2.2;
-
-    love.style.left =
-        (centerX + x * scaleX) + "%";
-
-    love.style.top =
-        (centerY - y * scaleY) + "%";
-
-    love.style.animationDelay =
-        (i * 0.025) + "s";
-
-    heart.appendChild(love);
+    if (equation <= 0) {
+      points.push({ x, y });
+    }
+  }
 }
-</script>
 
+points.forEach((point, index) => {
+  const word = document.createElement("span");
+
+  word.className = "love";
+  word.textContent = "I LOVE YOU";
+
+  word.style.setProperty(
+    "--x",
+    (50 + point.x * 35.5) + "%"
+  );
+
+  word.style.setProperty(
+    "--y",
+    (48 - point.y * 35.5) + "%"
+  );
+
+  word.style.setProperty(
+    "--hue",
+    337 + (index % 13) * 1.6
+  );
+
+  word.style.setProperty(
+    "--light",
+    (62 + (index % 4) * 5) + "%"
+  );
+
+  word.style.setProperty(
+    "--delay",
+    Math.min(index * 0.006, 2.4) + "s"
+  );
+
+  heart.appendChild(word);
+});
+</script>
 </body>
 </html>
