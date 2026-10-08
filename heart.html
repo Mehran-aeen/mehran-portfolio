@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>I Love You ❤️</title>
+<title>I Love You ❤️ | Mehran</title>
 
 <style>
 * {
@@ -18,11 +18,6 @@ body {
     min-height: 100vh;
     overflow: hidden;
     background: #080008;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
     font-family: Arial, sans-serif;
 }
 
@@ -35,18 +30,12 @@ body {
 .love {
     position: absolute;
     color: #ff1744;
-
     font-size: clamp(8px, 1.3vw, 14px);
     font-weight: bold;
     white-space: nowrap;
-
     opacity: 0;
     transform: translate(-50%, -50%) scale(0);
-
-    text-shadow:
-        0 0 5px #ff1744,
-        0 0 12px #ff1744;
-
+    text-shadow: 0 0 5px #ff1744, 0 0 12px #ff1744;
     animation: appear .5s forwards;
 }
 
@@ -56,6 +45,84 @@ body {
         transform: translate(-50%, -50%) scale(1);
     }
 }
+
+/* Creator Profile */
+.creator {
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    bottom: 18px;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    padding: 10px 16px 10px 10px;
+    border: 1px solid rgba(255, 23, 68, .65);
+    border-radius: 50px;
+
+    background: rgba(20, 5, 15, .92);
+    box-shadow: 0 0 18px rgba(255, 23, 68, .25);
+
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition: box-shadow .25s ease;
+}
+
+.creator:hover {
+    box-shadow: 0 0 28px rgba(255, 23, 68, .55);
+}
+
+.creator img {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ff1744;
+}
+
+.creator-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.creator-name {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.creator-handle {
+    font-size: 11px;
+    color: #ff8ca2;
+}
+
+@media (max-width: 480px) {
+    .creator {
+        bottom: 12px;
+        padding: 8px 13px 8px 8px;
+        gap: 9px;
+    }
+
+    .creator img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .creator-name {
+        font-size: 12px;
+    }
+
+    .creator-handle {
+        font-size: 10px;
+    }
+}
 </style>
 </head>
 
@@ -63,9 +130,27 @@ body {
 
 <div id="heart"></div>
 
+<!-- Click to visit Mehran's GitHub profile -->
+<a
+    class="creator"
+    href="https://github.com/Mehran-aeen"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Made by Mehran - Visit GitHub profile"
+>
+    <img
+        src="https://avatars.githubusercontent.com/u/289211534?v=4"
+        alt="Mehran's GitHub avatar"
+    >
+
+    <span class="creator-info">
+        <span class="creator-name">Made with ❤️ by Mehran</span>
+        <span class="creator-handle">@Mehran-aeen · GitHub ↗</span>
+    </span>
+</a>
+
 <script>
 const heart = document.getElementById("heart");
-
 const total = 220;
 
 for (let i = 0; i < total; i++) {
@@ -86,15 +171,17 @@ for (let i = 0; i < total; i++) {
 
     const centerX = 50;
     const centerY = 50;
-
-    // قلب کوچک‌تر و متقارن‌تر
     const scaleX = 2.2;
     const scaleY = 2.2;
 
-    love.style.left = (centerX + x * scaleX) + "%";
-    love.style.top = (centerY - y * scaleY) + "%";
+    love.style.left =
+        (centerX + x * scaleX) + "%";
 
-    love.style.animationDelay = (i * 0.025) + "s";
+    love.style.top =
+        (centerY - y * scaleY) + "%";
+
+    love.style.animationDelay =
+        (i * 0.025) + "s";
 
     heart.appendChild(love);
 }
